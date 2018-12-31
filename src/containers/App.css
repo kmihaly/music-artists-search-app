@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+html, body, #root, #root > div {
+  height: 100%;
+}
+
+section {
+  height: 95%;
+}
+
+body {
+  padding: 0 40px 40px 40px !important;
+}
+
+.mar10 {
+  margin: 10px;
+}
+
+.rounded15 {
+  border-radius: 15px;
+}
+
+.of-scroll {
+  overflow-y: scroll;
+}
+
+.max-height600 {
+  max-height: 600px;
+}
+
+.pa10 {
+  padding: 0px 10px;
+}
+
+.fs-13r {
+  font-size: 1.3rem;
+}
+
+.jc-center {
+  justify-content: center;
+}
