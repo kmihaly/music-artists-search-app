@@ -3,8 +3,12 @@
     background-size: cover;
 }
 
-.rounded6 {
+.rounded-top-6 {
     border-radius: 6px 6px 0px 0px;
+}
+
+.rounded-bottom-6 {
+    border-radius: 0px 0px 6px 6px;
 }
 
 .bgr-w {

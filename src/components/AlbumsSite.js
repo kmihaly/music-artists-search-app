@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 class AlbumsSite extends Component {
 
@@ -16,29 +17,33 @@ class AlbumsSite extends Component {
                                 {albums.map(
                                     album => {
                                         return (
-                                            <li key={album.collectionId}>
-                                                <div className="card">
-                                                    <div className="card-content">
-                                                        <div className="media">
-                                                            <div className="media-left">
-                                                                <figure className="image is-48x48">
-                                                                    <img src={album.artworkUrl60} alt="Album cover" />
-                                                                </figure>
-                                                            </div>
-                                                            <div className="media-content">
-                                                                <p className="title is-4">{album.collectionName}</p>
-                                                            </div>
+                                        (album.collectionId) 
+                                        ?
+                                        <li key={album.collectionId}>
+                                            <div className="card">
+                                                <div className="card-content">
+                                                    <div className="media">
+                                                        <div className="media-left">
+                                                            <figure className="image is-48x48">
+                                                                <img src={album.artworkUrl60} alt="Album cover" />
+                                                            </figure>
+                                                        </div>
+                                                        <div className="media-content">
+                                                            <p className="title is-4 pa5">{album.collectionName}</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </li>
+                                            </div>
+                                        </li>
+                                        :
+                                        null
                                         )
                                     }
                                 )}
                             </ul>
                         </section>
                         :
-                        <h1>LOADING...</h1>
+                        <h1>Type an artist name in the <Link to="/">search box.</Link></h1>
                 }
             </div>
         );

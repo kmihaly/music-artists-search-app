@@ -17,30 +17,37 @@ class App extends Component {
     }
   }
 
-  handleChange = (e) => {
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.handleSearchArtistClick();
+    }
+  }
+
+  handleSearchBoxChange = (e) => {
     this.setState({ searchField: e.target.value });
   }
 
-  async handleArtist(artistName) {
+  async saveArtist(artistId) {
     await this.setState({
-      chosenArtist: artistName,
+    chosenArtist: artistId,
     });
-    if (artistName) {
+    if (artistId) {
       const albums = await this.fetchAlbum();
+
       await this.setState({ albums: albums });
     }
   }
 
   async fetchArtists() {
-    const search = this.state.searchField.split(' ').join('+');
-    const apiURL = 'https://itunes.apple.com/search?media=music&entity=musicArtist&term=';
+    const search = encodeURIComponent(this.state.searchField);
+    const apiURL = 'https://itunes.apple.com/search?media=music&entity=musicArtist&limit=200&term=';
     const query = apiURL + search;
     const response = await fetch(query);
     const json = await response.json();
     return json.results;
   }
 
-  async handleClick() {
+  async handleSearchArtistClick() {
     const artists = await this.fetchArtists();
     this.setState({
       artists: artists,
@@ -49,14 +56,17 @@ class App extends Component {
   }
 
   async fetchAlbum() {
-    const artistName = this.state.chosenArtist;
-    const nameText = artistName.split(' ').join('+');
-    const apiURL = `https://itunes.apple.com/search?term=${nameText}&entity=album`;
+    const artistId = this.state.chosenArtist;
+    const codedId = encodeURI(artistId);
+    const apiURL = `https://itunes.apple.com/lookup?id=${codedId}&entity=album&limit=200`;
     const response = await fetch(apiURL);
     const json = await response.json();
     return json.results;
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
   render() {
 
     const { searchClicked, chosenArtist, artists, albums } = this.state;
@@ -64,7 +74,7 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar" role="navigation" aria-label="main navigation">
-          <div className="navbar-brand jc-center">
+          <div className="navbar-brand">
             <ul>
               <li className='button is-warning mar10'>
                 <NavLink className='navbar-item' to="/">Artists</NavLink>
@@ -80,14 +90,14 @@ class App extends Component {
             exact path='/'
             render={(props) =>
               <SearchSite {...props}
-                searchChange={this.handleChange}
-                searchClick={this.handleClick.bind(this)}
+                searchChange={this.handleSearchBoxChange}
+                searchClick={this.handleSearchArtistClick.bind(this)}
                 isClicked={searchClicked}
-                artistHandler={this.handleArtist.bind(this)}
+                artistHandler={this.saveArtist.bind(this)}
                 chosenArtist={chosenArtist}
                 artists={artists}
-              >
-              </SearchSite>}
+              />
+            }
           />
           <Route
             path='/albums'
@@ -95,8 +105,7 @@ class App extends Component {
               <AlbumsSite {...props}
                 artistName={this.state.chosenArtist}
                 albums={albums}
-              >
-              </AlbumsSite>
+              />
             }
           />
         </Switch>

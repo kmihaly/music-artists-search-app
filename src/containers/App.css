@@ -18,8 +18,28 @@ body {
   margin: 10px;
 }
 
+.rounded6 {
+  border-radius: 6px;
+}
+
+.rounded-top6 {
+  border-radius: 6px 6px 0px 0px;
+}
+
+.rounded-bottom6 {
+  border-radius: 0px 0px 6px 6px;
+}
+
 .rounded15 {
   border-radius: 15px;
+}
+
+.not-rounded {
+  border-radius: 0;
+}
+
+.pos-abs {
+  position: absolute;
 }
 
 .of-scroll {
@@ -31,7 +51,11 @@ body {
 }
 
 .pa10 {
-  padding: 0px 10px;
+  padding: 10px;
+}
+
+.pa5 {
+  padding: 5px;
 }
 
 .fs-13r {
@@ -40,4 +64,8 @@ body {
 
 .jc-center {
   justify-content: center;
+}
+
+.d-block {
+  display: block;
 }

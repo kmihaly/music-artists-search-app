@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class SearchResults extends Component {
 
     render() {
 
-        const { artists, artistHandler, chosenArtist } = this.props;
+        const { artists, artistHandler } = this.props;
 
         return (
             <div>
-                <div className='hero is-warning rounded6 pa10 mat30'>
+                <div className='hero is-warning pa10 mat30 rounded-top6'>
                     <h1 className='title'>Search Results:</h1>
                 </div>
-                <div className=' of-scroll results-height'>
+                <div className='of-scroll results-height field rounded-bottom6'>
                     <ul>
                         {artists.map((artist) => {
                             return (
-                                <li
-                                    key={artist.artistId}
-                                    className='button is-fullwidth pa10 bgr-w fs-13r'
+                                <Link to="/albums" key={artist.artistId}><li
+                                    className='button is-fullwidth pa10 bgr-w fs-13r not-rounded'
                                     onClick={() => {
-                                        artistHandler(artist.artistName);
+                                        artistHandler(artist.artistId);
                                     }}
-                                >{artist.artistName}
+                                >
+                                {artist.artistName}
                                 </li>
+                                </Link>
                             )
                         })}
                     </ul>
                 </div>
-                <NavLink className='button is-warning mar10' to="/albums">{`Show ${chosenArtist} albums`}</NavLink>
             </div>
         );
     }
