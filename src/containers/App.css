@@ -6,12 +6,13 @@ html, body, #root, #root > div {
   height: 100%;
 }
 
-section {
-  height: 95%;
-}
-
 body {
   padding: 0 40px 40px 40px !important;
+}
+
+.albums-border {
+  border: 5px solid #ff3860; 
+  border-radius: 15px 0px 0px 15px;
 }
 
 .mar10 {
@@ -44,10 +45,11 @@ body {
 
 .of-scroll {
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.max-height600 {
-  max-height: 600px;
+.of-hidden {
+  overflow: hidden;
 }
 
 .pa10 {
@@ -68,4 +70,12 @@ body {
 
 .d-block {
   display: block;
+}
+
+.max-height {
+  max-height: calc(100vh - 430px);
+}
+
+.height85vh {
+  max-height: 85vh;
 }

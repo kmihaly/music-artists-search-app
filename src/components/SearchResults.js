@@ -8,11 +8,11 @@ class SearchResults extends Component {
         const { artists, artistHandler } = this.props;
 
         return (
-            <div>
+            <div class="max-height">
                 <div className='hero is-warning pa10 mat30 rounded-top6'>
                     <h1 className='title'>Search Results:</h1>
                 </div>
-                <div className='of-scroll results-height field rounded-bottom6'>
+                <div className='field rounded-bottom6 of-scroll max-height'>
                     <ul>
                         {artists.map((artist) => {
                             return (

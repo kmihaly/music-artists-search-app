@@ -1,3 +1,8 @@
+.hero {
+    height: calc(100% - 56px);
+    max-height: calc(100% - 56px);
+}
+
 .ford-background {
     background: url(../pictures/fordfairlane.jpg);
     background-size: cover;
@@ -17,8 +22,4 @@
 
 .mat30 {
     margin-top: 30px;
-}
-
-.results-height {
-    max-height: 260px;
 }
